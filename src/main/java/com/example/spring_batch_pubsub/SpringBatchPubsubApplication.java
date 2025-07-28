@@ -10,5 +10,4 @@ public class SpringBatchPubsubApplication {
 		System.out.println("Starting Spring Boot application...");
 		SpringApplication.run(SpringBatchPubsubApplication.class, args);
 	}
-
 }

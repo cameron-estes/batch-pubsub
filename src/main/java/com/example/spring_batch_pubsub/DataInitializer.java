@@ -13,14 +13,18 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("✅ Database initialized with sample data from schema.sql!");
-        System.out.println("📊 Total messages in database: " + messageService.getMessageCount());
         
-        // Display all messages
-        messageService.displayAllMessages();
-        
-        // Add one more message to demonstrate the service
-        messageService.addMessage("This message was added via Java code!");
-        System.out.println("\n➕ Added one more message via Java code");
-        messageService.displayAllMessages();
+        try {
+            System.out.println("📊 Total messages in database: " + messageService.getMessageCount());
+            
+            messageService.displayAllMessages();
+            
+            messageService.addMessage("This message was added via Java code!");
+
+            messageService.displayAllMessages();
+        } catch (Exception e) {
+            System.err.println("Error accessing database: " + e.getMessage());
+            System.err.println("This might be because the database schema hasn't been initialized yet.");
+        }
     }
 } 
